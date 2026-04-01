@@ -2,12 +2,7 @@
 #include "Lane.h"
 
 
-Lane::Lane(TrafficLight* light, float length) 
-{
-    this->light = light;
-    this->laneLength = length;
-    this->totalVehiclesProcessed = 0;
-}
+Lane::Lane(TrafficLight* LIGHTS, float len): TrafficLight(LIGHTS),laneLength(len), totalVehiclesProcessed(0){}
 
 
 void Lane::addVehicle(const Vehicle& v) 
@@ -19,12 +14,16 @@ void Lane::update(int deltaTime)
 {
     if (vehicles.empty()) 
     {
+        bool emergency = false;
+        light ->update(emergency);
         return;
     } 
 
     Vehicle& front = vehicles.front();
+    bool emergency = front.isEmergency();
+    light -> update(emergency);
 
-    if (light->getState() == TrafficLight::State::GREEN) 
+    if (light->getState() == LightState::GREEN) 
     {
         front.accelerate(deltaTime); 
         front.move(deltaTime); 
@@ -49,6 +48,7 @@ void Lane::updateWaitTimes(int deltaTime)
         v.updateWaitTime(deltaTime);
     }
 }
+
 
 int Lane::getQueueLength() const 
 {
