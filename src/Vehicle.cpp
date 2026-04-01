@@ -2,53 +2,89 @@
 #include <iostream>
 using namespace std;
 
-Vehicle::Vehicle(int vehicleName, string color, bool emergency, double position, double speed) {
-        this->vehicleName = vehicleName;
-        this->color = color;
+Vehicle::Vehicle(int Name, string color, bool emergency, double position, double speed) 
+{
+        this -> vehicleName = Name;
+        this -> color = color;
         this->emergency = emergency;
         this->position = position;
         this->speed = speed;
 }
 
+void Vehicle::accelerate(int deltaTime)
+{
+    speed+= 1.0 * deltaTime;
+}
 
-int Vehicle::getVehicleName() { 
+void Vehicle::stop()
+{
+    speed = 0;
+}
+
+void Vehicle::updateWaitTime(int deltaTime)
+{
+    if(speed == 0)\
+    {
+        waitTime +=deltaTime;
+    }
+}
+
+double Vehicle::getWaitTime()
+{
+    return waitTime;
+}
+
+int Vehicle::getVehicleName() 
+{ 
     return vehicleName; 
 }
-string Vehicle::getColor() { 
+string Vehicle::getColor() 
+{ 
     return color; 
 }
-bool Vehicle::isEmergency() { 
+bool Vehicle::isEmergency() 
+{ 
     return emergency; 
 }
-double Vehicle::getPosition() { 
+double Vehicle::getPosition() 
+{ 
     return position; 
 }
-double Vehicle::getSpeed() { 
+double Vehicle::getSpeed() 
+{ 
     return speed; 
 }
 
 
-void Vehicle::setPosition(double newPosition) { 
+void Vehicle::setPosition(double newPosition) 
+{ 
     position = newPosition; 
 }
-void Vehicle::setSpeed(double newSpeed) { 
+void Vehicle::setSpeed(double newSpeed) 
+{ 
     speed = newSpeed; 
 }
 
 
-void Vehicle::move() {
-    position += speed; 
+void Vehicle::move(int deltaTime) 
+{
+    position += speed * deltaTime; 
 }
 
-int Vehicle::getPriority() {
-    if (emergency) {
+int Vehicle::getPriority() 
+{
+    if (emergency) 
+    {
         return 1; 
-    } else {
+    } 
+    else 
+    {
         return 0;
     }
 }
 
-void Vehicle::display() {
+void Vehicle::display() 
+{
     string kind;
     if (emergency) {
         kind = "Emergency";
