@@ -1,6 +1,10 @@
 #ifndef LANE_H
 #define LANE_H
 
+#include <queue>
+#include "Vehicle.h"
+#include "TrafficLight.h"
+
 class Lane {
     std::queue<Vehicle> vehicles;
     TrafficLight* light;
