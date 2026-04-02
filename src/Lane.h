@@ -1,12 +1,12 @@
 #ifndef LANE_H
 #define LANE_H
 
-#include <queue>
+#include <deque>
 #include "Vehicle.h"
 #include "TrafficLight.h"
 
 class Lane {
-    std::queue<Vehicle> vehicles;
+    std::deque<Vehicle> vehicles;
     TrafficLight* light;
     float laneLength;
     int totalVehiclesProcessed;
@@ -20,3 +20,5 @@ public:
     int getTotalProcessed() const;
     bool isEmpty() const;
 };
+
+#endif

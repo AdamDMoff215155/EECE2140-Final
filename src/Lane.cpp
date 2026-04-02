@@ -2,12 +2,12 @@
 #include "Lane.h"
 
 
-Lane::Lane(TrafficLight* LIGHTS, float len): TrafficLight(LIGHTS),laneLength(len), totalVehiclesProcessed(0){}
+Lane::Lane(TrafficLight* LIGHTS, float len): light(LIGHTS),laneLength(len), totalVehiclesProcessed(0){}
 
 
 void Lane::addVehicle(const Vehicle& v) 
 {
-    vehicles.push(v);
+    vehicles.push_back(v);
 }   
 
 void Lane::update(int deltaTime) 
@@ -25,19 +25,21 @@ void Lane::update(int deltaTime)
 
     if (light->getState() == LightState::GREEN) 
     {
+        for(auto& v: vehicles)
         front.accelerate(deltaTime); 
         front.move(deltaTime); 
 
         if (front.getPosition() >= laneLength) 
         {
-            vehicles.pop();
+            vehicles.pop_front();
             totalVehiclesProcessed++;
         }
     } 
 
     else 
     {
-        front.stop();
+        for (auto& v : vehicles)
+        v.stop();
     }
 }
 
@@ -52,7 +54,7 @@ void Lane::updateWaitTimes(int deltaTime)
 
 int Lane::getQueueLength() const 
 {
-    return vehicles.size();
+    return static_cast<int>(vehicles.size());
 }
 
 int Lane::getTotalProcessed() const 

@@ -1,35 +1,36 @@
 #ifndef VEHICLE_H
 #define VEHICLE_H
-#include <string>
 
+#include <string>
 using namespace std;
 
 class Vehicle {
 private:
-    int vehicleName;
+    string vehicleName;
     string color;
     bool emergency;
     double position;
     double speed;
+    double waitTime;
 
 public:
-    Vehicle(int vehicleName, string color, bool emergency, double position, double speed);
+    Vehicle(string vehicleName, string color, bool emergency, double position, double speed);
 
-//getter methods 
-    int getVehicleName();
+    string getVehicleName();
     string getColor();
     bool isEmergency();
     double getPosition();
     double getSpeed();
-
-//setter methods
     void setPosition(double newPosition);
     void setSpeed(double newSpeed);
-
-
-    void move();
+    void move(int deltaTime);
     int getPriority();
     void display();
+
+    void accelerate(int deltaTime);
+    void stop();
+    void updateWaitTime(int deltaTime);
+    double getWaitTime() const;
 };
 
 #endif

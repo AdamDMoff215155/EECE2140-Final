@@ -2,13 +2,14 @@
 #include <iostream>
 using namespace std;
 
-Vehicle::Vehicle(int Name, string color, bool emergency, double position, double speed) 
+Vehicle::Vehicle(string Name, string color, bool emergency, double position, double speed) 
 {
         this -> vehicleName = Name;
         this -> color = color;
         this->emergency = emergency;
         this->position = position;
         this->speed = speed;
+        this -> waitTime = 0.0;
 }
 
 void Vehicle::accelerate(int deltaTime)
@@ -23,18 +24,18 @@ void Vehicle::stop()
 
 void Vehicle::updateWaitTime(int deltaTime)
 {
-    if(speed == 0)\
+    if(speed == 0)
     {
         waitTime +=deltaTime;
     }
 }
 
-double Vehicle::getWaitTime()
+double Vehicle::getWaitTime() const
 {
     return waitTime;
 }
 
-int Vehicle::getVehicleName() 
+string Vehicle::getVehicleName() 
 { 
     return vehicleName; 
 }
@@ -86,15 +87,14 @@ int Vehicle::getPriority()
 void Vehicle::display() 
 {
     string kind;
-    if (emergency) {
+    if (emergency) 
+    {
         kind = "Emergency";
     } 
-    else {
+    else 
+    {
         kind = "Normal";
     }
-    cout << "Vehicle " << vehicleName
-         << "Type of Car: " << kind
-         << "Color: " << color
-         << "Position in Lane: " << position
-         << "Speed: " << speed << endl;
+    cout << "Vehicle: " << vehicleName << " Type of Car: " << kind << " Color: " << color
+         << " Position in Lane: " << position << " Speed: " << speed << endl;
 }
