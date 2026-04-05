@@ -10,25 +10,20 @@ void Lane::addVehicle(const Vehicle& v)
     vehicles.push_back(v);
 }   
 
-void Lane::update(int deltaTime) 
+void Lane::update(int timer) 
 {
     if (vehicles.empty()) 
     {
-        bool emergency = false;
-        light ->update(emergency);
         return;
     } 
 
     Vehicle& front = vehicles.front();
-    bool emergency = front.isEmergency();
-    light -> update(emergency);
 
     if (light->getState() == LightState::GREEN) 
     {
-        for(auto& v: vehicles)
-        front.accelerate(deltaTime); 
-        front.move(deltaTime); 
-
+            front.accelerate(timer); 
+            front.move(timer); 
+            cout <<"Front vehicle position: " << front.getPosition() << endl;
         if (front.getPosition() >= laneLength) 
         {
             vehicles.pop_front();
@@ -39,15 +34,17 @@ void Lane::update(int deltaTime)
     else 
     {
         for (auto& v : vehicles)
-        v.stop();
+        {
+            v.stop();
+        }
     }
 }
 
-void Lane::updateWaitTimes(int deltaTime) 
+void Lane::updateWaitTimes(int timer) 
 {
     for (auto& v : vehicles) 
     {
-        v.updateWaitTime(deltaTime);
+        v.updateWaitTime(timer);
     }
 }
 
@@ -65,4 +62,9 @@ int Lane::getTotalProcessed() const
 bool Lane::isEmpty() const 
 {
     return vehicles.empty();
+}
+
+Vehicle& Lane::getFrontVehicle()
+{
+    return vehicles.front();
 }

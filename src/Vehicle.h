@@ -6,7 +6,7 @@ using namespace std;
 
 class Vehicle {
 private:
-    string vehicleName;
+    int vehicleID;
     string color;
     bool emergency;
     double position;
@@ -14,22 +14,22 @@ private:
     double waitTime;
 
 public:
-    Vehicle(string vehicleName, string color, bool emergency, double position, double speed);
+    Vehicle(int vehicleID, string color, bool emergency, double position, double speed);
 
-    string getVehicleName();
+    int getVehicleID();
     string getColor();
     bool isEmergency();
     double getPosition();
     double getSpeed();
     void setPosition(double newPosition);
     void setSpeed(double newSpeed);
-    void move(int deltaTime);
+    void move(int timer);
     int getPriority();
     void display();
 
-    void accelerate(int deltaTime);
+    void accelerate(int timer);
     void stop();
-    void updateWaitTime(int deltaTime);
+    void updateWaitTime(int timer);
     double getWaitTime() const;
 };
 

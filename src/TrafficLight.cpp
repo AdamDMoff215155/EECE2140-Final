@@ -1,8 +1,6 @@
 #include "TrafficLight.h"
 
-TrafficLight::TrafficLight(int greenDuration,
-                           int yellowDuration,
-                           int redDuration)
+TrafficLight::TrafficLight(int greenDuration, int yellowDuration, int redDuration)
 {
     state = LightState::GREEN; // start with green light
     timer = 0; // initialize timer
@@ -10,7 +8,6 @@ TrafficLight::TrafficLight(int greenDuration,
     this->greenDuration = greenDuration; // set green duration
     this->yellowDuration = yellowDuration; // set yellow duration
     this->redDuration = redDuration; // set red duration
-
     emergencyMode = false; // default normal mode
 }
 
@@ -67,7 +64,7 @@ LightState TrafficLight::getState() const
 }
 
 
-string TrafficLight::getStateString() const
+string TrafficLight::getStateAsString() const
 {
     if (state == LightState::RED)
         return "RED"; // return red
@@ -101,4 +98,10 @@ void TrafficLight::updateNormalCycle()
         state = LightState::GREEN; // switch to green
         timer = 0;
     }
+}
+
+void TrafficLight::forceRed()
+{
+    state = LightState::RED;
+    timer = 0;
 }

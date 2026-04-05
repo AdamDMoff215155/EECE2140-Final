@@ -2,9 +2,9 @@
 #include <iostream>
 using namespace std;
 
-Vehicle::Vehicle(string Name, string color, bool emergency, double position, double speed) 
+Vehicle::Vehicle(int ID, string color, bool emergency, double position, double speed) 
 {
-        this -> vehicleName = Name;
+        this -> vehicleID = ID;
         this -> color = color;
         this->emergency = emergency;
         this->position = position;
@@ -12,9 +12,9 @@ Vehicle::Vehicle(string Name, string color, bool emergency, double position, dou
         this -> waitTime = 0.0;
 }
 
-void Vehicle::accelerate(int deltaTime)
+void Vehicle::accelerate(int timer)
 {
-    speed+= 1.0 * deltaTime;
+    speed+= 1.0 * timer;
 }
 
 void Vehicle::stop()
@@ -22,11 +22,11 @@ void Vehicle::stop()
     speed = 0;
 }
 
-void Vehicle::updateWaitTime(int deltaTime)
+void Vehicle::updateWaitTime(int timer)
 {
     if(speed == 0)
     {
-        waitTime +=deltaTime;
+        waitTime +=timer;
     }
 }
 
@@ -35,9 +35,9 @@ double Vehicle::getWaitTime() const
     return waitTime;
 }
 
-string Vehicle::getVehicleName() 
+int Vehicle::getVehicleID() 
 { 
-    return vehicleName; 
+    return vehicleID; 
 }
 string Vehicle::getColor() 
 { 
@@ -56,7 +56,6 @@ double Vehicle::getSpeed()
     return speed; 
 }
 
-
 void Vehicle::setPosition(double newPosition) 
 { 
     position = newPosition; 
@@ -66,10 +65,9 @@ void Vehicle::setSpeed(double newSpeed)
     speed = newSpeed; 
 }
 
-
-void Vehicle::move(int deltaTime) 
+void Vehicle::move(int timer) 
 {
-    position += speed * deltaTime; 
+    position += speed * timer; 
 }
 
 int Vehicle::getPriority() 
@@ -95,6 +93,6 @@ void Vehicle::display()
     {
         kind = "Normal";
     }
-    cout << "Vehicle: " << vehicleName << " Type of Car: " << kind << " Color: " << color
+    cout << "Vehicle ID: " << vehicleID << " Type of Car: " << kind << " Color: " << color
          << " Position in Lane: " << position << " Speed: " << speed << endl;
 }

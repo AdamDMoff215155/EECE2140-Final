@@ -13,12 +13,13 @@ class Lane {
 
 public:
     Lane(TrafficLight* light, float length);
-    void update(int deltaTime);
-    void updateWaitTimes(int deltaTime);
+    void update(int timer);
+    void updateWaitTimes(int timer);
     void addVehicle(const Vehicle& v);
     int getQueueLength() const;
     int getTotalProcessed() const;
     bool isEmpty() const;
+    Vehicle& getFrontVehicle();
 };
 
 #endif

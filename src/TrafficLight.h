@@ -4,7 +4,8 @@
 #include <string>
 using namespace std;
 
-enum class LightState {
+enum class LightState 
+{
     RED,
     YELLOW,
     GREEN
@@ -27,29 +28,17 @@ private:
 
 public:
 
-    TrafficLight(int greenDuration = 5,
-                 int yellowDuration = 2,
-                 int redDuration = 3); // constructor
-
+    TrafficLight(int greenDuration = 5, int yellowDuration = 2, int redDuration = 3); // constructor
 
     void update(bool emergencyDetected); // update light each simulation step
-
     void activateEmergencyMode(); // force green for emergency vehicle
-
     void deactivateEmergencyMode(); // return to normal cycle
-
-
     bool canVehiclesMove() const; // check if vehicles can move
-
     bool isEmergencyMode() const; // return emergency mode status
-
-
     LightState getState() const; // return current light state
-
-    string getStateString() const; // return state as string
-
-
+    string getStateAsString() const; // return state as string
     void updateNormalCycle(); // run normal red-yellow-green cycle
+    void forceRed();
 };
 
 #endif
