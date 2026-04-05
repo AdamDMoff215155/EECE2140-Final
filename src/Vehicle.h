@@ -12,9 +12,10 @@ private:
     double position;
     double speed;
     double waitTime;
+    double maxSpeed;
 
 public:
-    Vehicle(int vehicleID, string color, bool emergency, double position, double speed);
+    Vehicle(int vehicleID, string color, bool emergency, double position, double speed, double maxSpeed);
 
     int getVehicleID();
     string getColor();

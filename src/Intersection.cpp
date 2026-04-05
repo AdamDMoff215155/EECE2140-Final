@@ -2,7 +2,7 @@
 #include <iostream>
 #include<string>
 
-Intersection ::Intersection():light1(5,2,5), light2(5,2,5), lane1(&light1, 10.0f), lane2(&light2, 10.0f)
+Intersection ::Intersection():light1(10,2,5), light2(10,2,5), lane1(&light1, 10.0f), lane2(&light2, 10.0f)
 {
     light2.forceRed();
 }

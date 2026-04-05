@@ -23,7 +23,6 @@ void Lane::update(int timer)
     {
             front.accelerate(timer); 
             front.move(timer); 
-            cout <<"Front vehicle position: " << front.getPosition() << endl;
         if (front.getPosition() >= laneLength) 
         {
             vehicles.pop_front();

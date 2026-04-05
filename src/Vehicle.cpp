@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-Vehicle::Vehicle(int ID, string color, bool emergency, double position, double speed) 
+Vehicle::Vehicle(int ID, string color, bool emergency, double position, double speed, double maxSpeed) 
 {
         this -> vehicleID = ID;
         this -> color = color;
@@ -10,11 +10,16 @@ Vehicle::Vehicle(int ID, string color, bool emergency, double position, double s
         this->position = position;
         this->speed = speed;
         this -> waitTime = 0.0;
+        this -> maxSpeed = maxSpeed;
 }
 
 void Vehicle::accelerate(int timer)
 {
     speed+= 1.0 * timer;
+    if(speed > maxSpeed)
+    {
+        speed = maxSpeed;
+    }
 }
 
 void Vehicle::stop()

@@ -2,10 +2,8 @@
 #include <iostream>
 using namespace std;
 
-Simulator::Simulator(int timer, int endTime): clock(timer, endTime), distribution(1)
-{
-    nextVehicleID = 1;
-}
+Simulator::Simulator(int timer, int endTime): clock(timer, endTime), distribution(1), nextVehicleID(1){}
+
 
 void Simulator::spawnVehicles()
 {
@@ -18,7 +16,7 @@ void Simulator::spawnVehicles()
         // randomly make some vehicles emergency
         bool emergency = (rand() % 10 == 0); // 10% chance
 
-        Vehicle v(nextVehicleID++, "White", emergency, 0.0, 10.0);
+        Vehicle v(nextVehicleID++, "White", emergency, 0.0, 10.0, 10.0);
         if(whatLane)
         {
             intersection.vehicleToLane1(v);
@@ -43,8 +41,8 @@ void Simulator :: run()
 
         if(clock.getCurrentTime() % 10 ==0)
         {
-            cout << "Time: " << clock.getCurrentTime() << " | Lane A Queue: " << intersection.getQueueLength1()
-                << " | Lane B Queue: " << intersection.getQueueLength2() << " | Light A: " << intersection.getLight1State() << " | Light B: " << intersection.getLight2State()
+            cout << "Time: " << clock.getCurrentTime() << " | Lane 1 Queue: " << intersection.getQueueLength1()
+                << " | Lane 2 Queue: " << intersection.getQueueLength2() << " | Light 1: " << intersection.getLight1State() << " | Light 2: " << intersection.getLight2State()
                 << " | Processed: " << intersection.getProcessedVehicles() << endl;
         }
 
