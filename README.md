@@ -6,7 +6,10 @@ Project overview:
 In this project, we will be implementing a Traffic Intersection simulation. This simulation will model cars on a two-way street with a traffic light. The cars will stop and form a line when the light is red, slow down and stop when the light turns yellow, and drive through the light if it is green. Additionally, if there is an emergency vehicle, it can go through any light and skip the line of vehicles.
 
 Main functionalities:
-There will be functions involving the vehicles, traffic lights, and lanes. Additionally, we will have a class that includes interactions among the vehicles, traffic lights, and lanes, using clock functions.
+There will be functions involving the vehicles, traffic lights, and lanes. Additionally, we will have a class that includes interactions among the vehicles, traffic lights, and lanes, using clock functions. To run this program use the following commands below.
+
+g++ main.cpp Vehicle.cpp TrafficLight.cpp Lane.cpp Intersection.cpp SimClock.cpp Stats.cpp Simulator.cpp -o main
+./main
 
 OOP design summary:
 There are 4 main classes. These classes are the Vehicle class, Traffic Light Class, Lane Class, and Intersection class. The Vehicle Class will create the vehicle and update its speed and position. The traffic light class will update its own lights, allowing vehicles to move. Additionally, functions have been implemented to enable emergency mode, allowing the emergency vehicle to go through the lights. The lane class's main functions are to add vehicles to a queue, update wait times, find the queue length, and count the number of vehicles that have gone through the lights. Finally, the intersection class controls the colors of the lights, ensuring the two traffic lights are synchronized. This class will utilize a clock timer. 
