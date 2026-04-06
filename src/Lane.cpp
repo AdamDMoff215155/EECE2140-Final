@@ -17,21 +17,24 @@ void Lane::update(int timer)
         return;
     } 
 
-    Vehicle& front = vehicles.front();
-
     if (light->getState() == LightState::GREEN) 
     {
-            front.accelerate(timer); 
-            front.move(timer); 
-        if (front.getPosition() >= laneLength) 
+        //Apply acceleration and movement to ALL vehicles in the lane
+        for (auto& v : vehicles) {
+            v.accelerate(timer);
+            v.move(timer);
+        }
+        
+        //Check if the front vehicle has passed the end of the lane
+        if (vehicles.front().getPosition() >= laneLength) 
         {
             vehicles.pop_front();
             totalVehiclesProcessed++;
         }
     } 
-
     else 
     {
+        //Red or Yellow light: all vehicles must stop
         for (auto& v : vehicles)
         {
             v.stop();

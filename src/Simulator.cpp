@@ -1,5 +1,7 @@
 #include "Simulator.h"
 #include <iostream>
+#include <thread>
+#include <chrono>
 using namespace std;
 
 Simulator::Simulator(int timer, int endTime): clock(timer, endTime), distribution(1), nextVehicleID(1){}
@@ -29,27 +31,40 @@ void Simulator::spawnVehicles()
     }
 }
 
-void Simulator :: run()
+void Simulator::run()
 {
-    cout << "Starting" << endl;
-
     while (!clock.isDone())
     {
-        spawnVehicles();
+        //Spawn vehicles every 3 seconds instead of every tick to avoid overcrowding
+        if (clock.getCurrentTime() % 3 == 0) {
+            spawnVehicles();
+        }
+        
         intersection.update(clock.getTimer());
         stats.collect(intersection, clock.getCurrentTime());
 
-        if(clock.getCurrentTime() % 10 ==0)
-        {
-            cout << "Time: " << clock.getCurrentTime() << " | Lane 1 Queue: " << intersection.getQueueLength1()
-                << " | Lane 2 Queue: " << intersection.getQueueLength2() << " | Light 1: " << intersection.getLight1State() << " | Light 2: " << intersection.getLight2State()
-                << " | Processed: " << intersection.getProcessedVehicles() << endl;
-        }
+        //Terminal animation: clear the screen using ANSI escape codes
+        cout << "\033[2J\033[1;1H"; 
+
+        cout << "======================================================" << endl;
+        cout << " 🚦 SMART TRAFFIC INTERSECTION SIMULATOR (Time: " << clock.getCurrentTime() << "s)" << endl;
+        cout << "======================================================" << endl;
+        
+        cout << "Light 1 State: [" << intersection.getLight1State() << "] | Queue: " << intersection.getQueueLength1() << " cars" << endl;
+        cout << "Light 2 State: [" << intersection.getLight2State() << "] | Queue: " << intersection.getQueueLength2() << " cars" << endl;
+        cout << "------------------------------------------------------" << endl;
+        cout << "Total Vehicles Processed: " << intersection.getProcessedVehicles() << endl;
+        cout << "======================================================" << endl;
 
         clock.tick();
+
+        //Pause the thread for 0.5 seconds to create an animation frame
+        this_thread::sleep_for(chrono::milliseconds(500)); 
     }
 
+    //Clear the screen one last time and print final statistics
+    cout << "\033[2J\033[1;1H"; 
     stats.printSummary();
-    cout << "Complete" << endl;
+    cout << "\n✅ Simulation Complete!" << endl;
 }
 
