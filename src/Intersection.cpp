@@ -3,10 +3,10 @@
 #include<string>
 
 Intersection::Intersection(): 
-    light1(10, 2, 12),        //Change red light duration to 12 (10+2) to sync with cross-traffic
-    light2(10, 2, 12),        //Change red light duration to 12 (10+2)
-    lane1(&light1, 100.0f),  //Increase lane length to 100.0f for better visualization
-    lane2(&light2, 100.0f)   //Increase lane length to 100.0f
+    light1(10, 2, 12),        
+    light2(10, 2, 12),     
+    lane1(&light1, 100.0f), 
+    lane2(&light2, 100.0f)
 {
     light2.forceRed();
 }
