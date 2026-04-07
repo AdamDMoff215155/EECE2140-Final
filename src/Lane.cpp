@@ -42,15 +42,6 @@ void Lane::update(int timer)
     }
 }
 
-void Lane::updateWaitTimes(int timer) 
-{
-    for (auto& v : vehicles) 
-    {
-        v.updateWaitTime(timer);
-    }
-}
-
-
 int Lane::getQueueLength() const 
 {
     return static_cast<int>(vehicles.size());

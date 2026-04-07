@@ -5,8 +5,8 @@
 Intersection::Intersection(): 
     light1(10, 2, 12),        
     light2(10, 2, 12),     
-    lane1(&light1, 100.0f), 
-    lane2(&light2, 100.0f)
+    lane1(&light1, 10.0f), 
+    lane2(&light2, 10.0f)
 {
     light2.forceRed();
 }

@@ -9,7 +9,6 @@ Vehicle::Vehicle(int ID, string color, bool emergency, double position, double s
         this->emergency = emergency;
         this->position = position;
         this->speed = speed;
-        this -> waitTime = 0.0;
         this -> maxSpeed = maxSpeed;
 }
 
@@ -25,19 +24,6 @@ void Vehicle::accelerate(int timer)
 void Vehicle::stop()
 {
     speed = 0;
-}
-
-void Vehicle::updateWaitTime(int timer)
-{
-    if(speed == 0)
-    {
-        waitTime +=timer;
-    }
-}
-
-double Vehicle::getWaitTime() const
-{
-    return waitTime;
 }
 
 int Vehicle::getVehicleID() 

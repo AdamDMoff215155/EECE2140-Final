@@ -14,7 +14,6 @@ class Lane {
 public:
     Lane(TrafficLight* light, float length);
     void update(int timer);
-    void updateWaitTimes(int timer);
     void addVehicle(const Vehicle& v);
     int getQueueLength() const;
     int getTotalProcessed() const;

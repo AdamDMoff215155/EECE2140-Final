@@ -11,7 +11,6 @@ private:
     bool emergency;
     double position;
     double speed;
-    double waitTime;
     double maxSpeed;
 
 public:
@@ -30,8 +29,6 @@ public:
 
     void accelerate(int timer);
     void stop();
-    void updateWaitTime(int timer);
-    double getWaitTime() const;
 };
 
 #endif
