@@ -57,3 +57,13 @@ int Intersection::getProcessedVehicles() const
 {
     return lane1.getTotalProcessed() + lane2.getTotalProcessed();
 }
+
+int Intersection::getProcessedEmergencyVehicles() const
+{
+    return lane1.getTotalEmergencyProcessed() + lane2.getTotalEmergencyProcessed();
+}
+
+bool Intersection::isEmergencyActive() const
+{
+    return light1.isEmergencyMode() || light2.isEmergencyMode();
+}

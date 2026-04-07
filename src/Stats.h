@@ -12,6 +12,7 @@ class Stats
     float totalWaitTime;
     int maxQueueLength;
     int tickCount;
+    int totalEmergencyProcessed;
 
     public:
     Stats();

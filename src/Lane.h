@@ -10,6 +10,7 @@ class Lane {
     TrafficLight* light;
     float laneLength;
     int totalVehiclesProcessed;
+    int totalEmergencyProcessed;
 
 public:
     Lane(TrafficLight* light, float length);
@@ -17,6 +18,7 @@ public:
     void addVehicle(const Vehicle& v);
     int getQueueLength() const;
     int getTotalProcessed() const;
+    int getTotalEmergencyProcessed() const;
     bool isEmpty() const;
     Vehicle& getFrontVehicle();
 };

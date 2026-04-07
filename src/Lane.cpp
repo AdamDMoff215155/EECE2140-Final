@@ -2,7 +2,7 @@
 #include "Lane.h"
 
 
-Lane::Lane(TrafficLight* LIGHTS, float len): light(LIGHTS),laneLength(len), totalVehiclesProcessed(0){}
+Lane::Lane(TrafficLight* LIGHTS, float len): light(LIGHTS),laneLength(len), totalVehiclesProcessed(0), totalEmergencyProcessed(0){}
 
 
 void Lane::addVehicle(const Vehicle& v) 
@@ -28,6 +28,10 @@ void Lane::update(int timer)
         //Check if the front vehicle has passed the end of the lane
         if (vehicles.front().getPosition() >= laneLength) 
         {
+            //If the front vehicle is an emergency vehicle, increment the emergency processed count
+            if (vehicles.front().isEmergency()) {
+                totalEmergencyProcessed++;
+            }
             vehicles.pop_front();
             totalVehiclesProcessed++;
         }
@@ -60,4 +64,9 @@ bool Lane::isEmpty() const
 Vehicle& Lane::getFrontVehicle()
 {
     return vehicles.front();
+}
+
+int Lane::getTotalEmergencyProcessed() const 
+{
+    return totalEmergencyProcessed;
 }
