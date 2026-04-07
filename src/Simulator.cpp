@@ -48,7 +48,11 @@ void Simulator::run()
 
         cout << "======================================================" << endl;
         cout << " 🚦 SMART TRAFFIC INTERSECTION SIMULATOR (Time: " << clock.getCurrentTime() << "s)" << endl;
+        if (intersection.isEmergencyActive()) {
+            cout << " 🚨🚨🚨 WARNING: EMERGENCY VEHICLE DETECTED! 🚨🚨🚨" << endl;
+        }
         cout << "======================================================" << endl;
+    
         
         cout << "Light 1 State: [" << intersection.getLight1State() << "] | Queue: " << intersection.getQueueLength1() << " cars" << endl;
         cout << "Light 2 State: [" << intersection.getLight2State() << "] | Queue: " << intersection.getQueueLength2() << " cars" << endl;

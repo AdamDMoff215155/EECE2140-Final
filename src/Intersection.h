@@ -25,6 +25,8 @@ class Intersection
         string getLight1State() const;
         string getLight2State() const;
         int getProcessedVehicles() const;
+        int getProcessedEmergencyVehicles() const;
+        bool isEmergencyActive() const;
 };
 
 #endif
