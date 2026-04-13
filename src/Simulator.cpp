@@ -4,10 +4,10 @@
 #include <chrono>
 using namespace std;
 
-Simulator::Simulator(int timer, int endTime): clock(timer, endTime), distribution(1), nextVehicleID(1){}
+Simulator::Simulator(int timer, int endTime): clock(timer, endTime), distribution(1), nextVehicleID(1){} // constructor initializes clock with timer and end time; sets up poisson distribution for vehicle spawning; initializes next vehicle ID to 1
 
 
-void Simulator::spawnVehicles()
+void Simulator::spawnVehicles() // spawns a random number of vehicles; randomly assigns them to lane 1 or 2; also randomly makes some vehicles emergency vehicles
 {
     int numVehicles = distribution(gen);
 
@@ -31,7 +31,7 @@ void Simulator::spawnVehicles()
     }
 }
 
-void Simulator::run()
+void Simulator::run() // main simulation loop; runs until clock is done; spawns vehicles, updates intersection and stats, and prints terminal output each tick
 {
     while (!clock.isDone())
     {

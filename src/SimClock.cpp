@@ -1,8 +1,8 @@
 #include "SimClock.h"
 #include <iostream>
 
-        SimClock::SimClock(int time, int timeEnd): currentTime(0), timer(time), endTime(timeEnd){}
-        void SimClock::tick()
+        SimClock::SimClock(int time, int timeEnd): currentTime(0), timer(time), endTime(timeEnd){} //establishes clock object; initializes current time to 0 and sets timer and end time based on constructor parameters
+        void SimClock::tick() // advances the clock by one tick; updates current time and checks if simulation is done
         {
             currentTime += timer;
         }
@@ -17,7 +17,7 @@
             return timer;
         }
 
-        bool SimClock:: isDone() const
+        bool SimClock:: isDone() const // checks if current time has reached or exceeded end time; returns true if simulation should end
         {
             return currentTime >= endTime;
         }

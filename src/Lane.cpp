@@ -2,15 +2,15 @@
 #include "Lane.h"
 
 
-Lane::Lane(TrafficLight* LIGHTS, float len): light(LIGHTS),laneLength(len), totalVehiclesProcessed(0), totalEmergencyProcessed(0){}
+Lane::Lane(TrafficLight* LIGHTS, float len): light(LIGHTS),laneLength(len), totalVehiclesProcessed(0), totalEmergencyProcessed(0){} //establsihes lane; references TrafficLight class for light state and sets lane length
 
 
-void Lane::addVehicle(const Vehicle& v) 
+void Lane::addVehicle(const Vehicle& v) //adds vehicle to lanes queue
 {
     vehicles.push_back(v);
 }   
 
-void Lane::update(int timer) 
+void Lane::update(int timer) //updates lane each tick; moves vehicles if light is green, stops them if red or yellow; also checks if front vehicle has passed the end of the lane and updates processed counts accordingly
 {
     if (vehicles.empty()) 
     {
@@ -61,7 +61,7 @@ bool Lane::isEmpty() const
     return vehicles.empty();
 }
 
-Vehicle& Lane::getFrontVehicle()
+Vehicle& Lane::getFrontVehicle() // returns a refernce to the front vehicle in the lane; used for checking emergency vehicles in intersection class
 {
     return vehicles.front();
 }

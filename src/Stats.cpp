@@ -2,9 +2,9 @@
 #include <iostream>
 using namespace std;
 
-    Stats:: Stats():totalVehiclesProcessed(0), maxQueueLength(0), tickCount(0), totalEmergencyProcessed(0){}
+    Stats:: Stats():totalVehiclesProcessed(0), maxQueueLength(0), tickCount(0), totalEmergencyProcessed(0){} // constructor initializes all stats to 0
 
-    void Stats:: collect(const Intersection& intersection, int currentTime)
+    void Stats:: collect(const Intersection& intersection, int currentTime) // collects statistics each tick; updates total vehicles processed, total wait time, max queue length, and total emergency vehicles processed based on current state of the intersection
 {
     tickCount++;
     totalVehiclesProcessed = intersection.getProcessedVehicles();

@@ -10,10 +10,10 @@ class SimClock
     
     public:
         SimClock(int timer, int endTime);
-        void tick();
+        void tick(); // advances the clock by one tick; updates current time and checks if simulation is done
         int getCurrentTime() const;
         int getTimer() const;
-        bool isDone() const;
+        bool isDone() const; // checks if current time has reached or exceeded end time; returns true if simulation should end
 };
 
 #endif

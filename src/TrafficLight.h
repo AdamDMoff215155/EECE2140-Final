@@ -28,7 +28,7 @@ private:
 
 public:
 
-    TrafficLight(int greenDuration = 5, int yellowDuration = 2, int redDuration = 3); // constructor
+    TrafficLight(int greenDuration, int yellowDuration , int redDuration); // constructor
 
     void update(bool emergencyDetected); // update light each simulation step
     void activateEmergencyMode(); // force green for emergency vehicle

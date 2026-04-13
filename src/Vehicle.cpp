@@ -10,9 +10,9 @@ Vehicle::Vehicle(int ID, string color, bool emergency, double position, double s
         this->position = position;
         this->speed = speed;
         this -> maxSpeed = maxSpeed;
-}
+} // constructor to create vehicle object
 
-void Vehicle::accelerate(int timer)
+void Vehicle::accelerate(int timer) // increases the speed by 1 tick; will not exceed maz speed
 {
     speed+= 1.0 * timer;
     if(speed > maxSpeed)
@@ -21,7 +21,7 @@ void Vehicle::accelerate(int timer)
     }
 }
 
-void Vehicle::stop()
+void Vehicle::stop() //sets speed to 0
 {
     speed = 0;
 }
@@ -56,12 +56,12 @@ void Vehicle::setSpeed(double newSpeed)
     speed = newSpeed; 
 }
 
-void Vehicle::move(int timer) 
+void Vehicle::move(int timer) //updates position based on speed and time
 {
     position += speed * timer; 
 }
 
-int Vehicle::getPriority() 
+int Vehicle::getPriority() //returns 1 for emergency vehicles and 0 for normal vehicles; used for sorting in the intersection queue
 {
     if (emergency) 
     {
@@ -73,7 +73,7 @@ int Vehicle::getPriority()
     }
 }
 
-void Vehicle::display() 
+void Vehicle::display() // displays vehicle information
 {
     string kind;
     if (emergency) 

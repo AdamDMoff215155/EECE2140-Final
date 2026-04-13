@@ -15,8 +15,8 @@ class Stats
     int totalEmergencyProcessed;
 
     public:
-    Stats();
-    void collect(const Intersection& intersection, int currentTime);
+    Stats(); // constructor initializes all stats to 0
+    void collect(const Intersection& intersection, int currentTime); // collects statistics each tick; updates total vehicles processed, total wait time, max queue length, and total emergency vehicles processed based on current state of the intersection
     void printSummary() const;
 };
 

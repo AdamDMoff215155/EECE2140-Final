@@ -13,14 +13,14 @@ class Lane {
     int totalEmergencyProcessed;
 
 public:
-    Lane(TrafficLight* light, float length);
-    void update(int timer);
+    Lane(TrafficLight* light, float length); //establishes lane; references TrafficLight class for light state and sets lane length
+    void update(int timer);//updates lane each tick; moves vehicles if light is green, stops them if red or yellow; also checks if front vehicle has passed the end of the lane and updates processed counts accordingly
     void addVehicle(const Vehicle& v);
     int getQueueLength() const;
     int getTotalProcessed() const;
     int getTotalEmergencyProcessed() const;
     bool isEmpty() const;
-    Vehicle& getFrontVehicle();
+    Vehicle& getFrontVehicle();// returns a refernce to the front vehicle in the lane; used for checking emergency vehicles in intersection class
 };
 
 #endif
